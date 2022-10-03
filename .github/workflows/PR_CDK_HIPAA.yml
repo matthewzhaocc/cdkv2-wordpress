@@ -1,0 +1,14 @@
+name: 'Check PR HIPAA Compliance'
+on: pull_request
+jobs:
+  hipaa_verify:
+    name: Validate CDK Synth Output to Be Free of HIPAA Errors
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: install NodeJS
+        uses: action/setup-node@v1
+      - name: Install dependencies
+        run: npm install
+      - name: scan
+        run: npx cdk synth
